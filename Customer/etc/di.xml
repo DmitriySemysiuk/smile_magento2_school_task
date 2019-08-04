@@ -2,4 +2,6 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Smile\Customer\Api\Data\PriceRequestInterface" type="Smile\Customer\Model\PriceRequest" />
+    <preference for="Smile\Customer\Api\PriceRequestSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Smile\Customer\Api\PriceRequestRepositoryInterface" type="Smile\Customer\Model\PriceRequestRepository"/>
 </config>
