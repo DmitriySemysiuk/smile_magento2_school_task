@@ -5,14 +5,6 @@
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">smile_customer_pricerequest_listing.smile_customer_pricerequest_listing_data_source</item>
         </item>
-<!--        <item name="buttons" xsi:type="array">-->
-<!--            <item name="add" xsi:type="array">-->
-<!--                <item name="name" xsi:type="string">add</item>-->
-<!--                <item name="label" xsi:type="string" translate="true">Add New Post</item>-->
-<!--                <item name="class" xsi:type="string">primary</item>-->
-<!--                <item name="url" xsi:type="string">semysiuk_blogmodule/post/edit</item>-->
-<!--            </item>-->
-<!--        </item>-->
     </argument>
     <settings>
         <spinner>smile_customer_pricerequest_columns</spinner>
