@@ -7,7 +7,7 @@
              module="Smile_Customer"
              sortOrder="10"
              parent="Magento_Customer::customer"
-             action="Smile_Customer/priceRequests"
-             resource="Smile_Customer::priceRequests"/>
+             action="smile_customer/pricerequest"
+             resource="Smile_Customer::priceRequest"/>
     </menu>
 </config>

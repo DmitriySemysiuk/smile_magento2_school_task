@@ -57,7 +57,7 @@ class PriceRequestRepository implements PriceRequestRepositoryInterface
     }
 
     /**
-     * @param \Semysiuk\BlogModule\Api\Data\PriceRequestInterface $priceRequest
+     * @param \Smile\Customer\Api\Data\PriceRequestInterface $priceRequest
      *
      * @return PriceRequest
      *
