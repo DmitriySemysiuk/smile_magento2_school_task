@@ -7,27 +7,34 @@ require(
         $,
         modal
     ) {
-        var options = {
+        let form = $('#price-request-form');
+        form.mage('validation', {});
+        let options = {
             type: 'popup',
             responsive: true,
             innerScroll: true,
             buttons: [{
-                text: $.mage.__('Send mail'),
+                text: $.mage.__('Send'),
                 class: '',
                 click: function () {
-                    sendMail();
-                    this.closeModal();
+                    if(form.valid()){
+                        $.ajax({
+                            url: form.attr('action'),
+                            data: form.serialize(),
+                            type: 'POST',
+                            success: function() {
+                                form[0].reset();
+                                $('#price-request-popup-form').modal('closeModal');
+                            }
+                        });
+                    }
                 }
             }]
         };
 
-        var popup = modal(options, $('#price-request-popup-form'));
+        let popup = modal(options, $('#price-request-popup-form'));
         $("#price-request-button").on('click',function(){
             $("#price-request-popup-form").modal("openModal");
         });
-
-        function sendMail() {
-            alert("qwer");
-        }
     }
 );

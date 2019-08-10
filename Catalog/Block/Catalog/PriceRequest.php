@@ -12,7 +12,7 @@ use Magento\Framework\Registry;
  */
 class PriceRequest extends Template
 {
-    const PRICE_REQUEST_FORM_ACTION = 'catalog/pricerequest/save';
+    const PRICE_REQUEST_FORM_ACTION = 'smile_catalog/pricerequest';
 
     protected $_registry;
 
@@ -35,16 +35,6 @@ class PriceRequest extends Template
      */
     public function getFormAction(){
         return self::PRICE_REQUEST_FORM_ACTION;
-    }
-
-    /**
-     * Get current category
-     *
-     * @return object
-     */
-    public function getCurrentCategory()
-    {
-        return $this->_registry->registry('current_category');
     }
 
     /**
