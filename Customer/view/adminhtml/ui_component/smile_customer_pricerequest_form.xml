@@ -13,6 +13,7 @@
             <button name="back" class="Smile\Customer\Block\Adminhtml\PriceRequest\Edit\BackButton"/>
             <button name="save" class="Smile\Customer\Block\Adminhtml\PriceRequest\Edit\SaveButton"/>
             <button name="send_email" class="Smile\Customer\Block\Adminhtml\PriceRequest\Edit\SendEmailButton"/>
+            <button name="delete" class="Smile\Customer\Block\Adminhtml\PriceRequest\Edit\DeleteButton"/>
         </buttons>
         <namespace>smile_customer_pricerequest_form</namespace>
         <dataScope>data</dataScope>

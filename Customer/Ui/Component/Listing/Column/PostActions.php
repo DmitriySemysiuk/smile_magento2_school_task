@@ -18,6 +18,7 @@ class PostActions extends Column
      * Url path
      */
     const URL_PATH_EDIT = 'smile_customer/pricerequest/edit';
+    const URL_PATH_DELETE = 'smile_customer/pricerequest/delete';
 
     /**
      * Url builder
@@ -73,6 +74,15 @@ class PostActions extends Column
                                 ]
                             ),
                             'label' => __('Edit')
+                        ],
+                        'delete' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_PATH_DELETE,
+                                [
+                                    'id' => $item['id']
+                                ]
+                            ),
+                            'label' => __('Delete')
                         ]
                     ];
                 }

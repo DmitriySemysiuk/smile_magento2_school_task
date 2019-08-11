@@ -11,7 +11,11 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
  */
 class SendEmailButton extends GenericButton implements ButtonProviderInterface
 {
+    /**
+     * Url path
+     */
     const SEND_EMAIL_URL = 'smile_customer/pricerequest/sendemail';
+
     /**
      * Get SendEmailButton button data
      *
@@ -32,7 +36,7 @@ class SendEmailButton extends GenericButton implements ButtonProviderInterface
      *
      * @return string
      */
-    public function getBackUrl()
+    public function getSendEmailUrl()
     {
         return $this->getUrl(self::SEND_EMAIL_URL);
     }

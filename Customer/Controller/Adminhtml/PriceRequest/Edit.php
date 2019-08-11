@@ -109,4 +109,14 @@ class Edit extends Action
 
         return $resultPage;
     }
+
+    /**
+     * Is the user allowed to edit/save the customer price request answer.
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
+    }
 }

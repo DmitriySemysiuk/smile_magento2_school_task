@@ -82,4 +82,14 @@ class Save extends Action
         var_dump("Save");
         exit();
     }
+
+    /**
+     * Is the user allowed to save the customer price request answer.
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
+    }
 }
