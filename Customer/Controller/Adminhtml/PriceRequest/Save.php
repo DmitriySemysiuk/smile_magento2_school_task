@@ -5,7 +5,6 @@ namespace Smile\Customer\Controller\Adminhtml\PriceRequest;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Smile\Customer\Api\PriceRequestRepositoryInterface;
 use Smile\Customer\Model\PriceRequestFactory;
 
@@ -17,6 +16,11 @@ use Smile\Customer\Model\PriceRequestFactory;
  */
 class Save extends Action
 {
+    /**
+     ** Url path
+     */
+    const EDIT_URL = '*/*/edit';
+
     /**
      * Authorization level of a basic admin session
      *
@@ -79,8 +83,46 @@ class Save extends Action
      */
     public function execute()
     {
-        var_dump("Save");
-        exit();
+        $resultRedirect = $this->resultRedirectFactory->create();
+        $resultRedirect->setPath('*/*/');
+
+        $model = $this->priceRequestFactory->create();
+        $data = $this->getRequest()->getParams();
+        $answer = "";
+
+        if ($data) {
+            $oldStatus = $this->priceRequestRepository->getById($data['id']);
+            if ($oldStatus->getStatus() != static::STATUS_CLOSED) {
+                if ($data['status'] == static::STATUS_CLOSED ||
+                    ($data['status'] != static::STATUS_CLOSED && $data['answer'] != null)) {
+                    try {
+                        if ($data['status'] != static::STATUS_CLOSED) {
+
+                            //email
+
+                            $answer = $answer . 'Letter sent';
+                            $data['status'] = self::STATUS_CLOSED;
+                        }
+
+                        $model->setData($data);
+                        $answer = $answer . '   Request closed';
+                        $this->priceRequestRepository->save($model);
+
+                        $this->messageManager->addSuccessMessage(__($answer));
+                    } catch (\Exception $e) {
+                        $this->messageManager->addErrorMessage($e->getMessage());
+
+                        $resultRedirect->setPath($this->getUrl(static::EDIT_URL, [$data['id']]));
+                    }
+                }
+            }
+            else {
+                $answer = 'Request was closed long time ago';
+                $this->messageManager->addSuccessMessage(__($answer));
+            }
+        }
+
+        return $resultRedirect;
     }
 
     /**
