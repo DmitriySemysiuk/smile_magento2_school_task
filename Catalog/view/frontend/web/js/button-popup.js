@@ -17,7 +17,7 @@ require(
                 text: $.mage.__('Send'),
                 class: '',
                 click: function () {
-                    if(form.valid()){
+                    if(form.validation('isValid')){
                         $.ajax({
                             url: form.attr('action'),
                             data: form.serialize(),
