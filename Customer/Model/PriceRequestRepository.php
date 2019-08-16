@@ -7,7 +7,6 @@ use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Smile\Customer\Api\PriceRequestRepositoryInterface;
-
 use Smile\Customer\Api\Data;
 use Smile\Customer\Model\ResourceModel\PriceRequest as ResourcePriceRequest;
 use Smile\Customer\Model\ResourceModel\PriceRequest\CollectionFactory as PriceRequestCollectionFactory;

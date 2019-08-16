@@ -53,14 +53,4 @@ class Index extends Action
 
         return $resultPage;
     }
-
-    /**
-     * Is the user allowed to view the customer price requests grid.
-     *
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
-    }
 }
