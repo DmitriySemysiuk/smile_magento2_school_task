@@ -88,13 +88,14 @@ class Save extends Action
         $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath('*/*/');
 
-        $model = $this->priceRequestFactory->create();
         $data = $this->getRequest()->getParams();
 
         if ($data) {
+            $id = $data['id'];
+
             try {
                 $answer = "The price request has been saved.";
-                if ($data['status'] != PriceRequest::STATUS_CLOSED && !empty($data['answer'])) {
+                if (!empty($data['answer'])) {
                     $postObject = new DataObject();
                     $postObject->setData($data);
 
@@ -104,12 +105,13 @@ class Save extends Action
                     $data['status'] = PriceRequest::STATUS_CLOSED;
                 }
 
+                $model = $this->priceRequestRepository->getById($id);
                 $model->setData($data);
                 $this->priceRequestRepository->save($model);
 
                 $this->messageManager->addSuccessMessage(__($answer));
             } catch (\Exception $e) {
-                $this->messageManager->addErrorMessage($e->getMessage());
+                $this->messageManager->addErrorMessage("Price request answer fall: " . $e->getMessage());
             }
         }
 

@@ -27,13 +27,6 @@ class PriceRequest extends AbstractModel implements IdentityInterface, PriceRequ
     const CACHE_TAG = "smile_customer_price_request_tag";
 
     /**
-     * Cache tag
-     *
-     * @var string
-     */
-    const cache_tag = "smile_customer_price_request_tag";
-
-    /**
      * Prefix of model events names
      *
      * @var string
