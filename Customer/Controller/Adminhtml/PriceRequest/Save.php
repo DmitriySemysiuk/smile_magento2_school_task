@@ -91,8 +91,6 @@ class Save extends Action
         $data = $this->getRequest()->getParams();
 
         if ($data) {
-            $id = $data['id'];
-
             try {
                 $answer = "The price request has been saved.";
                 if (!empty($data['answer'])) {
@@ -105,7 +103,7 @@ class Save extends Action
                     $data['status'] = PriceRequest::STATUS_CLOSED;
                 }
 
-                $model = $this->priceRequestRepository->getById($id);
+                $model = $this->priceRequestRepository->getById($data['id']);
                 $model->setData($data);
                 $this->priceRequestRepository->save($model);
 
