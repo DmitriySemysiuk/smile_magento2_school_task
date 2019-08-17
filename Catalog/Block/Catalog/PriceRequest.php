@@ -22,7 +22,10 @@ class PriceRequest extends Template
      * @param Registry $registry
      * @param array $data
      */
-    public function __construct(Template\Context $context, Registry $registry, array $data = [])
+    public function __construct(
+        Template\Context $context,
+        Registry $registry,
+        array $data = [])
     {
         $this->_registry = $registry;
         parent::__construct($context, $data);
@@ -34,7 +37,7 @@ class PriceRequest extends Template
      * @return string
      */
     public function getFormAction(){
-        return self::PRICE_REQUEST_FORM_ACTION;
+        return $this->getUrl(self::PRICE_REQUEST_FORM_ACTION);
     }
 
     /**
