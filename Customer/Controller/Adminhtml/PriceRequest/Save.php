@@ -8,6 +8,8 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Smile\Customer\Api\PriceRequestRepositoryInterface;
 use Smile\Customer\Model\PriceRequestFactory;
 use Smile\Customer\Model\PriceRequest;
+use Smile\Customer\Helper;
+use Magento\Framework\DataObject;
 
 /**
  * Class Save
@@ -45,23 +47,32 @@ class Save extends Action
     private $priceRequestFactory;
 
     /**
-     * Save constructor
+     * Email helper
      *
+     * @var Helper\Email
+     */
+    private $email;
+
+    /**
+     * Save constructor.
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
      * @param PriceRequestRepositoryInterface $priceRequestRepository
      * @param PriceRequestFactory $priceRequestFactory
+     * @param Helper\Email $email
      */
     public function __construct(
         Context $context,
         DataPersistorInterface $dataPersistor,
         PriceRequestRepositoryInterface $priceRequestRepository,
-        PriceRequestFactory $priceRequestFactory
+        PriceRequestFactory $priceRequestFactory,
+        Helper\Email $email
     )
     {
         $this->dataPersistor = $dataPersistor;
         $this->priceRequestRepository = $priceRequestRepository;
         $this->priceRequestFactory = $priceRequestFactory;
+        $this->email = $email;
         parent::__construct($context);
     }
 
@@ -84,7 +95,11 @@ class Save extends Action
             try {
                 $answer = "The price request has been saved.";
                 if ($data['status'] != PriceRequest::STATUS_CLOSED && !empty($data['answer'])) {
-                    //email
+                    $postObject = new DataObject();
+                    $postObject->setData($data);
+
+                    $this->email->sendEmail($postObject);
+
                     $answer = $answer . " The letter has been send.";
                     $data['status'] = PriceRequest::STATUS_CLOSED;
                 }
