@@ -61,17 +61,17 @@ class Email extends AbstractHelper
     /**
      * Send email
      *
-     * @param $emailObject
+     * @param $data
      */
-    public function sendEmail($emailObject){
+    public function sendEmail($data){
         $this->inlineTranslation->suspend();
 
         $transport = $this->transportBuilder
             ->setTemplateIdentifier(static::EMAIL_TEMPLATE_ID)
             ->setTemplateOptions(static::getOptions())
-            ->setTemplateVars(['data' => $emailObject])
+            ->setTemplateVars($data)
             ->setFrom(static::getSender())
-            ->addTo($emailObject['email'])
+            ->addTo($data['email'])
             ->getTransport();
         try {
             $transport->sendMessage();

@@ -93,12 +93,9 @@ class Save extends Action
         if ($data) {
             try {
                 $answer = "The price request has been saved.";
+
                 if (!empty($data['answer'])) {
-                    $postObject = new DataObject();
-                    $postObject->setData($data);
-
-                    $this->email->sendEmail($postObject);
-
+                    $this->email->sendEmail($data);
                     $answer = $answer . " The letter has been send.";
                     $data['status'] = PriceRequest::STATUS_CLOSED;
                 }
