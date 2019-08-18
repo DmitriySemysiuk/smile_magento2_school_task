@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="price_request_email_template" label="Request Form Answer" file="price_request_email_answer.html" type="html" module="Smile_Customer" area="adminhtml"/>
+</config>
