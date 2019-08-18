@@ -7,7 +7,7 @@ define(
         $,
         modal
     ) {
-        return function () {
+        return function (config, element) {
             let container = $("#price-request-popup-form");
             let form = $('#price-request-form');
 
@@ -39,7 +39,7 @@ define(
             };
 
             let popup = modal(options, container);
-            $("#price-request-button").on('click', function () {
+            $(element).on('click', function () {
                 container.modal("openModal");
             });
 
